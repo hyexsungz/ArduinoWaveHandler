@@ -1,0 +1,93 @@
+{
+  "project_name": "ArduinoWaveHandler",
+  "version": "0.3.0",
+  "mode": "development",
+
+  "runtime": {
+    "debug": true,
+    "live_console": true,
+    "auto_scan_devices": true,
+    "scan_interval_ms": 1000,
+    "event_loop": true
+  },
+
+  "console": {
+    "enabled": true,
+    "show_ascii_banner": true,
+    "banner_title": "ArduinoWaveHandler LIVE DEVICE ENGINE",
+    "color_output": true,
+    "log_to_console": true
+  },
+
+  "logger": {
+    "enabled": true,
+    "log_file": "logs/runtime.log",
+    "max_buffer": 2000,
+    "console_echo": true,
+    "timestamp_format": "%H:%M:%S",
+    "log_levels": ["INFO", "WARN", "ERROR", "DEBUG", "SUCCESS"]
+  },
+
+  "parser": {
+    "enable_json": true,
+    "enable_xml": true,
+    "enable_regex": true,
+    "history_limit": 1000,
+    "strict_mode": false
+  },
+
+  "string_utils": {
+    "enable_random": true,
+    "default_random_length": 16,
+    "hash_default": "sha256",
+    "allow_special_chars": true
+  },
+
+  "time_utils": {
+    "timezone": "local",
+    "track_uptime": true,
+    "enable_stopwatch": true,
+    "default_sleep_ms": 0
+  },
+
+  "file_utils": {
+    "safe_mode": true,
+    "backup_before_delete": false,
+    "auto_create_dirs": true,
+    "default_encoding": "utf-8"
+  },
+
+  "build": {
+    "clean_before_build": true,
+    "validate_syntax": true,
+    "generate_bundle": true,
+    "create_manifest": true,
+    "output_dir": "dist",
+    "build_dir": "build"
+  },
+
+  "device_layer": {
+    "enabled": true,
+    "scan_usb": true,
+    "scan_com_ports": true,
+    "detect_ch340": true,
+    "detect_cp210x": true,
+    "detect_ftdi": true,
+    "live_disconnect_tracking": true,
+    "vendor_lookup": true
+  },
+
+  "events": {
+    "CONNECT": true,
+    "DISCONNECT": true,
+    "SCAN": true,
+    "ERROR": true,
+    "DATA": false
+  },
+
+  "security": {
+    "local_only": true,
+    "no_network": true,
+    "block_remote_execution": true
+  }
+}

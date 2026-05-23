@@ -1,0 +1,89 @@
+{
+  "project": "ArduinoWaveHandler",
+
+  "division": {
+    "core": {
+      "description": "Runtime engine and system control layer",
+      "modules": [
+        "engine.py",
+        "dispatcher.py",
+        "device_manager.py"
+      ],
+      "status": "planned"
+    },
+
+    "utils": {
+      "description": "Core utility modules for data processing and system interaction",
+      "modules": {
+        "console.py": "Live device monitoring console interface",
+        "file_utils.py": "Filesystem abstraction and safe operations",
+        "logger.py": "Central logging system with buffering and file output",
+        "parser.py": "Data parsing, encoding, and transformation toolkit",
+        "string_utils.py": "String manipulation and encoding utilities",
+        "time_utils.py": "Time, stopwatch, and timestamp utilities"
+      },
+      "status": "active"
+    },
+
+    "build_system": {
+      "description": "Project compilation and bundling pipeline",
+      "modules": [
+        "build.py"
+      ],
+      "features": [
+        "project scanning",
+        "syntax validation",
+        "bundling",
+        "manifest generation",
+        "logging integration"
+      ],
+      "status": "active"
+    },
+
+    "tests": {
+      "description": "Unit and integration tests for modules",
+      "modules": [
+        "test_console.py",
+        "test_utils.py"
+      ],
+      "status": "planned"
+    },
+
+    "runtime": {
+      "description": "Live execution environment configuration",
+      "features": [
+        "device scanning loop",
+        "event processing",
+        "logging pipeline",
+        "parser integration",
+        "time tracking"
+      ],
+      "status": "development"
+    },
+
+    "device_layer": {
+      "description": "Hardware and USB/COM detection system",
+      "features": [
+        "COM port scanning",
+        "USB enumeration",
+        "CH340 detection",
+        "CP210x detection",
+        "FTDI detection",
+        "live disconnect tracking"
+      ],
+      "status": "planned"
+    },
+
+    "future": {
+      "description": "Planned expansion systems",
+      "modules": [
+        "GUI dashboard",
+        "plugin system",
+        "serial stream engine",
+        "cross-platform support",
+        "arduino handshake protocol"
+      ],
+      "status": "roadmap"
+    }
+  }
+}

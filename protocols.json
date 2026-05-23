@@ -1,0 +1,124 @@
+{
+  "project": "ArduinoWaveHandler",
+
+  "protocols": {
+    "serial": {
+      "enabled": true,
+      "description": "Standard serial communication layer for Arduino and USB serial devices",
+      "supported": [
+        "UART",
+        "TTL",
+        "USB_SERIAL"
+      ],
+      "baud_rates": [
+        300,
+        1200,
+        2400,
+        4800,
+        9600,
+        14400,
+        19200,
+        38400,
+        57600,
+        115200
+      ]
+    },
+
+    "usb": {
+      "enabled": true,
+      "description": "USB device detection and enumeration layer",
+      "supported_devices": [
+        "CH340",
+        "CH341",
+        "CP210x",
+        "FTDI",
+        "Arduino Uno",
+        "Arduino Mega",
+        "Arduino Nano"
+      ]
+    },
+
+    "monitoring": {
+      "enabled": true,
+      "description": "Live hardware monitoring protocol",
+      "events": [
+        "CONNECT",
+        "DISCONNECT",
+        "SCAN",
+        "ERROR"
+      ],
+      "scan_interval_ms": 1000
+    },
+
+    "logging": {
+      "enabled": true,
+      "description": "Internal runtime logging protocol",
+      "levels": [
+        "INFO",
+        "WARN",
+        "ERROR",
+        "DEBUG",
+        "SUCCESS"
+      ],
+      "output": [
+        "console",
+        "file"
+      ]
+    },
+
+    "file_system": {
+      "enabled": true,
+      "description": "Internal file handling and runtime storage layer",
+      "features": [
+        "read",
+        "write",
+        "append",
+        "copy",
+        "move",
+        "delete",
+        "hashing"
+      ]
+    },
+
+    "parser": {
+      "enabled": true,
+      "description": "Data parsing and transformation layer",
+      "formats": [
+        "json",
+        "xml",
+        "regex",
+        "base64",
+        "hex"
+      ]
+    },
+
+    "runtime": {
+      "enabled": true,
+      "description": "Main runtime execution protocol",
+      "features": [
+        "threading",
+        "device scanning",
+        "event dispatching",
+        "time tracking",
+        "live monitoring"
+      ]
+    },
+
+    "future_protocols": {
+      "websocket_stream": {
+        "status": "planned",
+        "description": "Remote live event streaming"
+      },
+
+      "plugin_api": {
+        "status": "planned",
+        "description": "Third-party module protocol"
+      },
+
+      "arduino_handshake": {
+        "status": "planned",
+        "description": "Custom Arduino authentication and session layer"
+      }
+    }
+  }
+}

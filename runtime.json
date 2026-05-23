@@ -1,0 +1,104 @@
+{
+  "runtime": {
+    "name": "ArduinoWaveHandler Runtime",
+    "version": "0.3.0",
+    "state": "development",
+    "engine": "live_monitor",
+
+    "process": {
+      "threaded": true,
+      "persistent": true,
+      "auto_restart": false,
+      "safe_shutdown": true
+    },
+
+    "monitoring": {
+      "enabled": true,
+      "scan_interval_ms": 1000,
+      "live_tracking": true,
+      "disconnect_detection": true,
+      "event_history_limit": 5000
+    },
+
+    "devices": {
+      "scan_usb": true,
+      "scan_serial": true,
+      "scan_bluetooth": true,
+      "detect_ch340": true,
+      "detect_cp210x": true,
+      "detect_ftdi": true,
+      "detect_arduino": true
+    },
+
+    "console": {
+      "enabled": true,
+      "render_live": true,
+      "refresh_rate_ms": 2000,
+      "show_banner": true,
+      "show_stats": true,
+      "show_events": true
+    },
+
+    "logging": {
+      "enabled": true,
+      "write_file": true,
+      "write_console": true,
+      "path": "logs/runtime.log",
+      "max_lines": 100000,
+      "levels": [
+        "INFO",
+        "WARN",
+        "ERROR",
+        "DEBUG",
+        "SUCCESS"
+      ]
+    },
+
+    "events": {
+      "CONNECT": true,
+      "DISCONNECT": true,
+      "ERROR": true,
+      "SCAN": true,
+      "DATA": false
+    },
+
+    "performance": {
+      "max_threads": 16,
+      "cpu_limit_percent": 80,
+      "memory_limit_mb": 1024,
+      "low_latency_mode": true
+    },
+
+    "security": {
+      "local_runtime_only": true,
+      "network_disabled": true,
+      "remote_execution": false,
+      "sandbox_mode": false
+    },
+
+    "storage": {
+      "save_logs": true,
+      "save_events": true,
+      "save_snapshots": false,
+      "snapshot_interval_sec": 60
+    },
+
+    "future": {
+      "serial_streaming": {
+        "planned": true
+      },
+
+      "websocket_bridge": {
+        "planned": true
+      },
+
+      "plugin_runtime": {
+        "planned": true
+      },
+
+      "gui_dashboard": {
+        "planned": true
+      }
+    }
+  }
+}

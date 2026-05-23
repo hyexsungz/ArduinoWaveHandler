@@ -1,0 +1,152 @@
+{
+  "project": "ArduinoWaveHandler",
+
+  "signals": {
+    "CONNECT": {
+      "id": 1,
+      "priority": "HIGH",
+      "description": "Device connected to system",
+      "source_modules": [
+        "console",
+        "monitor",
+        "device_manager"
+      ],
+      "payload_schema": {
+        "device": "string",
+        "port": "string",
+        "driver": "string",
+        "timestamp": "int"
+      }
+    },
+
+    "DISCONNECT": {
+      "id": 2,
+      "priority": "HIGH",
+      "description": "Device removed or lost connection",
+      "source_modules": [
+        "console",
+        "monitor",
+        "device_manager"
+      ],
+      "payload_schema": {
+        "device": "string",
+        "port": "string",
+        "reason": "string",
+        "timestamp": "int"
+      }
+    },
+
+    "SCAN": {
+      "id": 3,
+      "priority": "MEDIUM",
+      "description": "System scan cycle executed",
+      "source_modules": [
+        "monitor",
+        "runtime"
+      ],
+      "payload_schema": {
+        "scan_id": "int",
+        "device_count": "int",
+        "timestamp": "int"
+      }
+    },
+
+    "DATA": {
+      "id": 4,
+      "priority": "MEDIUM",
+      "description": "Incoming serial or device data stream",
+      "source_modules": [
+        "console",
+        "parser",
+        "monitor",
+        "runtime"
+      ],
+      "payload_schema": {
+        "device": "string",
+        "value": "string",
+        "raw": "string",
+        "timestamp": "int"
+      }
+    },
+
+    "ERROR": {
+      "id": 5,
+      "priority": "HIGH",
+      "description": "Runtime or device error occurred",
+      "source_modules": [
+        "logger",
+        "console",
+        "runtime"
+      ],
+      "payload_schema": {
+        "module": "string",
+        "error": "string",
+        "code": "string",
+        "timestamp": "int"
+      }
+    },
+
+    "HEARTBEAT": {
+      "id": 6,
+      "priority": "LOW",
+      "description": "Keep-alive signal for runtime monitoring",
+      "source_modules": [
+        "runtime",
+        "monitor"
+      ],
+      "payload_schema": {
+        "status": "string",
+        "uptime": "int",
+        "timestamp": "int"
+      }
+    },
+
+    "LOG": {
+      "id": 7,
+      "priority": "LOW",
+      "description": "Internal logging event",
+      "source_modules": [
+        "logger"
+      ],
+      "payload_schema": {
+        "level": "string",
+        "message": "string",
+        "timestamp": "int"
+      }
+    },
+
+    "SYSTEM": {
+      "id": 8,
+      "priority": "HIGH",
+      "description": "Core system runtime event",
+      "source_modules": [
+        "runtime",
+        "engine"
+      ],
+      "payload_schema": {
+        "state": "string",
+        "detail": "string",
+        "timestamp": "int"
+      }
+    }
+  },
+
+  "routing": {
+    "CONNECT": ["monitor", "console", "logger"],
+    "DISCONNECT": ["monitor", "console", "logger"],
+    "SCAN": ["monitor", "logger"],
+    "DATA": ["parser", "runtime", "logger", "console"],
+    "ERROR": ["logger", "console", "runtime"],
+    "HEARTBEAT": ["runtime", "monitor"],
+    "LOG": ["logger"],
+    "SYSTEM": ["runtime", "logger", "console"]
+  },
+
+  "engine": {
+    "buffer_size": 5000,
+    "async_processing": true,
+    "deduplicate": true,
+    "priority_queue": true,
+    "max_workers": 8
+  }
+}

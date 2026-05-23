@@ -1,0 +1,89 @@
+{
+  "project": "ArduinoWaveHandler",
+
+  "ui": {
+    "theme": "dark",
+    "ascii_mode": true,
+    "live_console": true,
+    "refresh_rate_ms": 2000,
+    "show_banners": true,
+    "show_device_box": true,
+    "compact_mode": false
+  },
+
+  "runtime": {
+    "mode": "development",
+    "auto_start_monitor": true,
+    "safe_shutdown": true,
+    "threaded": true,
+    "max_threads": 16
+  },
+
+  "console": {
+    "enabled": true,
+    "title": "ArduinoWaveHandler LIVE DEVICE ENGINE",
+    "show_time": true,
+    "show_uptime": true,
+    "show_scan_count": true,
+    "show_events": true,
+    "max_devices_display": 50
+  },
+
+  "devices": {
+    "scan_usb": true,
+    "scan_serial": true,
+    "scan_bluetooth": false,
+    "auto_detect_drivers": true,
+    "detect_ch340": true,
+    "detect_cp210x": true,
+    "detect_ftdi": true,
+    "track_disconnects": true
+  },
+
+  "monitor": {
+    "enabled": true,
+    "scan_interval_ms": 1000,
+    "event_buffer_limit": 5000,
+    "log_events": true,
+    "deduplicate_events": true
+  },
+
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "file": "logs/runtime.log",
+    "console_output": true,
+    "include_timestamp": true,
+    "max_file_size_mb": 10
+  },
+
+  "build": {
+    "auto_clean": true,
+    "validate_syntax": true,
+    "bundle_output": true,
+    "generate_manifest": true,
+    "output_dir": "dist",
+    "build_dir": "build"
+  },
+
+  "security": {
+    "local_only": true,
+    "network_disabled": true,
+    "allow_plugins": false,
+    "sandbox_mode": false
+  },
+
+  "performance": {
+    "low_latency_mode": true,
+    "cpu_limit_percent": 80,
+    "memory_limit_mb": 1024,
+    "gc_interval_sec": 30
+  },
+
+  "advanced": {
+    "debug_mode": true,
+    "trace_events": false,
+    "profiling": false,
+    "internal_metrics": true
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "project": "ArduinoWaveHandler",
+
+  "waves": {
+    "CONNECT_WAVE": {
+      "id": 101,
+      "type": "event_cluster",
+      "description": "Grouped device connection activity detected over time window",
+      "trigger_conditions": {
+        "min_events": 1,
+        "time_window_sec": 5,
+        "event_types": ["CONNECT"]
+      },
+      "classification_rules": [
+        "multiple_connects",
+        "driver_initialization_detected",
+        "port_open_success"
+      ],
+      "output_signal": "WAVE_CONNECT",
+      "priority": "HIGH"
+    },
+
+    "DISCONNECT_WAVE": {
+      "id": 102,
+      "type": "event_cluster",
+      "description": "Grouped device disconnection activity detected",
+      "trigger_conditions": {
+        "min_events": 1,
+        "time_window_sec": 5,
+        "event_types": ["DISCONNECT"]
+      },
+      "classification_rules": [
+        "device_unplugged",
+        "port_closed",
+        "driver_failure"
+      ],
+      "output_signal": "WAVE_DISCONNECT",
+      "priority": "HIGH"
+    },
+
+    "DATA_WAVE": {
+      "id": 103,
+      "type": "stream_cluster",
+      "description": "Continuous serial data stream detected",
+      "trigger_conditions": {
+        "min_events": 5,
+        "time_window_sec": 10,
+        "event_types": ["DATA"]
+      },
+      "classification_rules": [
+        "consistent_stream",
+        "stable_frequency",
+        "no_parse_errors"
+      ],
+      "output_signal": "WAVE_DATA",
+      "priority": "MEDIUM"
+    },
+
+    "NOISE_WAVE": {
+      "id": 104,
+      "type": "anomaly_cluster",
+      "description": "Unstable or corrupted device behavior detected",
+      "trigger_conditions": {
+        "min_events": 3,
+        "time_window_sec": 8,
+        "event_types": ["ERROR", "DISCONNECT", "CONNECT"]
+      },
+      "classification_rules": [
+        "rapid_state_changes",
+        "invalid_packets",
+        "unstable_connection"
+      ],
+      "output_signal": "WAVE_NOISE",
+      "priority": "HIGH"
+    },
+
+    "STABILITY_WAVE": {
+      "id": 105,
+      "type": "state_cluster",
+      "description": "Long-term stable device connection detected",
+      "trigger_conditions": {
+        "min_uptime_sec": 30,
+        "max_disconnects": 0,
+        "event_types": ["CONNECT", "DATA"]
+      },
+      "classification_rules": [
+        "continuous_connection",
+        "steady_data_flow",
+        "no_errors"
+      ],
+      "output_signal": "WAVE_STABLE",
+      "priority": "LOW"
+    }
+  },
+
+  "engine": {
+    "buffer_size": 5000,
+    "sliding_window_sec": 10,
+    "analysis_mode": "real_time",
+    "deduplication": true,
+    "multi_device_support": true
+  },
+
+  "scoring": {
+    "stability_score_range": [0, 100],
+
+    "rules": {
+      "uptime_weight": 0.4,
+      "error_penalty": 0.3,
+      "disconnect_penalty": 0.3
+    },
+
+    "thresholds": {
+      "unstable": 30,
+      "moderate": 70,
+      "stable": 100
+    }
+  },
+
+  "integration": {
+    "monitor": true,
+    "signal_engine": true,
+    "console": true,
+    "logger": true,
+    "runtime": true
+  },
+
+  "future": {
+    "ai_wave_detection": {
+      "enabled": false,
+      "description": "Machine learning based anomaly detection"
+    },
+
+    "visual_wave_graph": {
+      "enabled": false,
+      "description": "Graphical wave visualization system"
+    },
+
+    "predictive_failure": {
+      "enabled": false,
+      "description": "Predict device failure before disconnect"
+    }
+  }
+}
